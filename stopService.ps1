@@ -28,13 +28,13 @@ Clear-Host
 $process = Get-Process  -ErrorAction SilentlyContinue eastweb
 if($process -ne $null)
 {
- echo "Process Found" >> stopProcess.log
+ echo "Process Found" >> C:\stopProcess.log
  $process.Kill()  
 
 }else
 {
     
-    echo "Process Not Found" >> stopProcess.log
+    echo "Process Not Found" >> C:\stopProcess.log
 }
 $path = "C:\AppFolder"
 Remove-Item $path -Recurse -ErrorAction Ignore
