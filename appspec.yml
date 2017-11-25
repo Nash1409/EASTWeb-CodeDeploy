@@ -1,0 +1,15 @@
+version: 0.0
+os: windows
+files:
+  - source: \
+    destination: c:\AppFolder
+hooks:
+  ApplicationStop:
+    - location: stopService.ps1
+      timeout: 180
+  BeforeInstall:
+    - location: removeFolder.ps1
+      timeout: 180
+  ApplicationStart:
+    - location: startService.ps1
+      timeout: 180
