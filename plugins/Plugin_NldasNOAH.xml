@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<PluginMetadata>
+	<Title>NldasNOAH</Title>
+	<DaysPerInputData>1</DaysPerInputData>
+	<NoDataValue>9999</NoDataValue>
+	<Resolution>12500</Resolution>
+	<CompositesContinueIntoNextYear>TRUE</CompositesContinueIntoNextYear>
+	<ExtraIndices>FALSE</ExtraIndices>
+	<ExtraDownloadFiles/>
+	<Download>
+		<DownloadFactoryClassName>NldasNOAHFactory</DownloadFactoryClassName>
+<!-- 		<Mode>ftp</Mode> -->
+<!-- 		<FTP> -->
+<!-- 			<HostName>hydro1.sci.gsfc.nasa.gov</HostName> -->
+<!-- 			<RootDir>/data/s4pa/NLDAS/NLDAS_NOAH0125_H.002</RootDir> -->
+<!-- 			<UserName>anonymous</UserName> -->
+<!-- 			<PassWord>anonymous</PassWord> -->
+<!-- 		</FTP> -->
+		<Mode>http</Mode>
+		<HTTP>
+			<URL>https://hydro1.gesdisc.eosdis.nasa.gov/data/NLDAS/NLDAS_NOAH0125_H.002/</URL>
+		</HTTP>
+		<TimeZone>CST6CDT</TimeZone>
+		<FilesPerDay>24</FilesPerDay>
+		<DatePattern>\d{4}</DatePattern>
+		<FileNamePattern>NLDAS_NOAH0125_H\.A(\d{4})(\d{2})(\d{2})\.(\d{4})\.002\.grb</FileNamePattern>
+		<OriginDate>
+			<DayOfMonth>02</DayOfMonth>
+			<Month>January</Month>
+			<Year>1979</Year>
+		</OriginDate>
+	</Download>	
+	<Processor>
+		<ProcessStep>NldasNOAHComposite</ProcessStep>
+		<ProcessStep>NldasNOAHReproject</ProcessStep>
+		<ProcessStep>NldasNOAHMask</ProcessStep>
+		<ProcessStep>NldasNOAHClip</ProcessStep>
+		<NumberOfOutput>10</NumberOfOutput>
+	</Processor>
+	<Indices>
+		<ClassName>NldasNOAHMeanDailySnowDepth</ClassName>
+		<ClassName>NldasNOAHMeanDailySnowCover</ClassName>
+		<ClassName>NldasNOAHMeanDailyVolumetric0_10</ClassName>
+		<ClassName>NldasNOAHMeanDailyVolumetric10_40</ClassName>
+		<ClassName>NldasNOAHMeanDailyVolumetric40_100</ClassName>
+		<ClassName>NldasNOAHMeanDailyVolumetric100_200</ClassName>
+		<ClassName>NldasNOAHMeanDailySoilTemp0_10</ClassName>
+		<ClassName>NldasNOAHMeanDailySoilTemp10_40</ClassName>
+		<ClassName>NldasNOAHMeanDailySoilTemp40_100</ClassName>
+		<ClassName>NldasNOAHMeanDailySoilTemp100_200</ClassName>
+	</Indices>
+	<Summary>
+		<Temporal>
+			<MergeStrategyClass>AvgGdalRasterFileMerge</MergeStrategyClass>
+			<InterpolateStrategyClass/>
+		</Temporal>
+	</Summary>
+	<QualityControl/>
+	<ExtraInfo>
+		<Tiles>false</Tiles>
+	</ExtraInfo>
+</PluginMetadata>

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<PluginMetadata>
+	<Title>NldasForcing</Title>
+	<DaysPerInputData>1</DaysPerInputData>
+	<NoDataValue>9999</NoDataValue>
+	<Resolution>12500</Resolution>
+	<CompositesContinueIntoNextYear>TRUE</CompositesContinueIntoNextYear>
+	<ExtraIndices>TRUE</ExtraIndices>
+	<ExtraDownloadFiles/>
+	<Download>
+		<DownloadFactoryClassName>NldasForcingFactory</DownloadFactoryClassName>
+<!-- 		<Mode>ftp</Mode> -->
+<!-- 		<FTP> -->
+<!-- 			<HostName>hydro1.sci.gsfc.nasa.gov</HostName> -->
+<!-- 			<RootDir>/data/s4pa/NLDAS/NLDAS_FORA0125_H.002/</RootDir> -->
+<!-- 			<UserName>anonymous</UserName> -->
+<!-- 			<PassWord>anonymous</PassWord> -->
+<!-- 		</FTP> -->
+		<Mode>http</Mode>
+		<HTTP>
+			<URL>https://hydro1.gesdisc.eosdis.nasa.gov/data/s4pa/NLDAS/NLDAS_FORA0125_H.002/</URL>
+		</HTTP>
+		<TimeZone>CST6CDT</TimeZone>
+		<FilesPerDay>24</FilesPerDay>
+		<DatePattern>\d{4}</DatePattern>
+		<FileNamePattern>NLDAS_FORA0125_H\.A(\d{4})(\d{2})(\d{2}).(\d{2})00\.002\.grb</FileNamePattern>
+		<OriginDate>
+			<DayOfMonth>01</DayOfMonth>
+			<Month>January</Month>
+			<Year>1979</Year>
+		</OriginDate>
+	</Download>	
+	<Processor>
+		<ProcessStep>NldasForcingComposite</ProcessStep>
+		<ProcessStep>NldasForcingReproject</ProcessStep>
+		<ProcessStep>NldasForcingMask</ProcessStep>
+		<ProcessStep>NldasForcingClip</ProcessStep>
+		<NumberOfOutput>15</NumberOfOutput>
+	</Processor>
+	<Indices>
+		<ClassName span="false">NldasForcingHeatingDegreeDays</ClassName>
+		<ClassName span="false">NldasForcingFreezingDegreeDays</ClassName>
+		<ClassName span="false">NldasForcingLymeDiseaseIndex</ClassName>
+		<ClassName span="false">NldasForcingMinAirTemperature</ClassName>
+		<ClassName span="false">NldasForcingMeanAirTemperature</ClassName>
+		<ClassName span="false">NldasForcingMaxAirTemperature</ClassName>
+		<ClassName span="false">NldasForcingMeanHeatIndex</ClassName>
+		<ClassName span="false">NldasForcingMaxHeatIndex</ClassName>
+		<ClassName span="false">NldasForcingMeanWindspeed</ClassName>
+		<ClassName span="false">NldasForcingMaxWindspeed</ClassName>
+		<ClassName span="false">NldasForcingMeanHumidity</ClassName>
+		<ClassName span="false">NldasForcingMeanRelativeHumidity</ClassName>
+		<ClassName span="true">NldasForcingOverwinteringIndex</ClassName>
+		<ClassName span="false">NldasForcingTotalPrecipitation</ClassName>
+		<ClassName span="false">NldasForcingWNVAmplificationIndex</ClassName>
+	</Indices>
+	<Summary>
+		<Temporal>
+			<MergeStrategyClass>AvgGdalRasterFileMerge</MergeStrategyClass>
+			<InterpolateStrategyClass/>
+		</Temporal>
+	</Summary>
+	<QualityControl/>
+	<ExtraInfo>
+		<Tiles>false</Tiles>
+	</ExtraInfo>
+</PluginMetadata>
+
+
+

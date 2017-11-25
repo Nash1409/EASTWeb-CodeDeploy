@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<PluginMetadata>
+	<Title>ModisNBARV6</Title>
+	<DaysPerInputData>1</DaysPerInputData>
+	<NoDataValue>-99999</NoDataValue>
+	<Resolution>500</Resolution>
+	<CompositesContinueIntoNextYear>TRUE</CompositesContinueIntoNextYear>
+	<ExtraIndices>FALSE</ExtraIndices>
+	<ExtraDownloadFiles>
+		<Name>QC</Name>
+	</ExtraDownloadFiles>
+	<Download Name="Data">
+		<DownloadFactoryClassName>ModisNBARV6Factory</DownloadFactoryClassName>
+		<Mode>http</Mode>
+		<HTTP>
+			<URL>https://e4ftl01.cr.usgs.gov/MOTA/MCD43A4.006/</URL>
+		</HTTP>
+		<TimeZone>CST6CDT</TimeZone>
+		<FilesPerDay>322</FilesPerDay>
+		<DatePattern>\d{4}</DatePattern>
+		<FileNamePattern>MCD43A4.A(\d{7}).h(\d{2})v(\d{2}).006.(\d{13}).hdf</FileNamePattern>
+		<OriginDate>
+			<DayOfMonth>24</DayOfMonth>
+			<Month>February</Month>
+			<Year>2000</Year>
+		</OriginDate>
+	</Download>
+	<Download Name="QC">
+		<DownloadFactoryClassName>ModisNBARV6QCFactory</DownloadFactoryClassName>
+		<Mode>http</Mode>
+		<HTTP>
+			<URL>https://e4ftl01.cr.usgs.gov/MOTA/MCD43A2.006/</URL>
+		</HTTP>
+		<TimeZone>CST6CDT</TimeZone>
+		<FilesPerDay>322</FilesPerDay>
+		<DatePattern>\d{4}</DatePattern>
+		<FileNamePattern>MCD43A2.A(\d{7}).h(\d{2})v(\d{2}).006.(\d{13}).hdf</FileNamePattern>
+	</Download>
+	<Processor>
+		<ProcessStep>ModisNBARV6MozaicData</ProcessStep>
+		<ProcessStep>ModisNBARV6MozaicQC</ProcessStep>
+		<ProcessStep>ModisNBARV6Filter</ProcessStep>
+		<ProcessStep>ModisNBARV6Reproject</ProcessStep>
+		<ProcessStep>ModisNBARV6Mask</ProcessStep>
+		<ProcessStep>ModisNBARV6Clip</ProcessStep>
+		<NumberOfOutput>7</NumberOfOutput>
+	</Processor>
+	<Indices>
+		<ClassName>ModisNBARV6NDVI</ClassName>
+		<ClassName>ModisNBARV6EVI</ClassName>
+		<ClassName>ModisNBARV6NDWI5</ClassName>
+		<ClassName>ModisNBARV6NDWI6</ClassName>
+		<ClassName>ModisNBARV6SAVI</ClassName>
+	</Indices>
+	<Summary>
+		<Temporal>
+			<MergeStrategyClass>AvgGdalRasterFileMerge</MergeStrategyClass>
+			<InterpolateStrategyClass></InterpolateStrategyClass>
+		</Temporal>
+	</Summary>
+	<QualityControl>
+		<Level>Highest (QA flag = 0)</Level>
+		<Level>Moderate (QA flag = 0 or 1)</Level>
+		<Level>Low (QA flag = 0,1,or 2)</Level>
+		<Level>NoScreening (QA flag = 0,1,2,or 3)</Level>
+	</QualityControl>
+	<ExtraInfo>
+		<Tiles>true</Tiles>
+	</ExtraInfo>
+</PluginMetadata>

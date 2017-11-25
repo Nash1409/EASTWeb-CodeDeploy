@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<PluginMetadata>
+	<Title>IMERG_RT</Title>
+	<DaysPerInputData>1</DaysPerInputData>
+	<NoDataValue>9999</NoDataValue>
+	<Resolution>10000</Resolution>
+	<CompositesContinueIntoNextYear>TRUE</CompositesContinueIntoNextYear>
+	<ExtraIndices>FALSE</ExtraIndices>
+	<ExtraDownloadFiles/>
+	<Download>
+		<DownloadFactoryClassName>IMERG_RTFactory</DownloadFactoryClassName>
+		<Mode>ftp</Mode>
+		<FTP>
+			<HostName>jsimpson.pps.eosdis.nasa.gov</HostName>
+			<RootDir>/data/imerg/gis</RootDir>
+			<UserName>eastweb.system@gmail.com</UserName>
+			<PassWord>eastweb.system@gmail.com</PassWord>
+		</FTP>
+		<TimeZone>CST6CDT</TimeZone>
+		<FilesPerDay>1</FilesPerDay>
+		<DatePattern>\d{4}</DatePattern>
+		<FileNamePattern>
+		    3B-HHR-L\.MS\.MRG\.3IMERG\.(\d{8})-S233000-E235959\.1410\.V(\d{2})[A-Z]\.1day\.tif((\.gz)?)
+		</FileNamePattern>
+		<OriginDate>
+			<DayOfMonth>07</DayOfMonth>
+			<Month>March</Month>
+			<Year>2015</Year>
+		</OriginDate>
+	</Download>	
+	<Processor>
+		<ProcessStep>IMERG_RTConvert</ProcessStep>
+		<ProcessStep>IMERG_RTReproject</ProcessStep>
+		<ProcessStep>IMERG_RTClip</ProcessStep>
+		<ProcessStep>IMERG_RTMask</ProcessStep>
+		<NumberOfOutput>1</NumberOfOutput>
+	</Processor>
+	<Indices>
+		<ClassName>IMERG_RTIndex</ClassName>
+	</Indices>
+	<Summary>
+		<Temporal>
+			<MergeStrategyClass>SummationGdalRasterFileMerge</MergeStrategyClass>
+			<InterpolateStrategyClass/>
+		</Temporal>
+	</Summary>
+	<QualityControl/>
+	<ExtraInfo>
+		<Tiles>false</Tiles>
+	</ExtraInfo>
+</PluginMetadata>
+

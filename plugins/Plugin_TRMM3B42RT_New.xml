@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<PluginMetadata>
+	<Title>TRMM3B42RT_New</Title>
+	<DaysPerInputData>1</DaysPerInputData>
+	<NoDataValue>-99999</NoDataValue>
+	<Resolution>25000</Resolution>
+	<CompositesContinueIntoNextYear>TRUE</CompositesContinueIntoNextYear>
+	<ExtraIndices>FALSE</ExtraIndices>
+	<ExtraDownloadFiles/>
+	<Download>
+		<DownloadFactoryClassName>TRMM3B42RT_NewFactory</DownloadFactoryClassName>
+		<Mode>http</Mode>
+		<HTTP>
+			<URL>https://disc2.gesdisc.eosdis.nasa.gov/data/TRMM_RT/TRMM_3B42RT_Daily.7/</URL>
+		</HTTP>
+		
+		<TimeZone>CST6CDT</TimeZone>
+		<FilesPerDay>1</FilesPerDay>
+		<DatePattern>\d{4}</DatePattern>
+		<FileNamePattern>3B42RT_daily\.(\d{8})\.7\.nc4</FileNamePattern>
+		<OriginDate>
+			<DayOfMonth>01</DayOfMonth>
+			<Month>March</Month>
+			<Year>2000</Year>
+		</OriginDate>
+	</Download>	
+	<Processor>
+		<ProcessStep>TRMM3B42RT_NewConvert</ProcessStep>
+		<ProcessStep>TRMM3B42RT_NewReproject</ProcessStep>
+		<ProcessStep>TRMM3B42RT_NewClip</ProcessStep>
+		<ProcessStep>TRMM3B42RT_NewMask</ProcessStep>
+		<NumberOfOutput>1</NumberOfOutput>
+	</Processor>
+	<Indices>
+		<ClassName>TRMM3B42RT_NewIndex</ClassName>
+	</Indices>
+	<Summary>
+		<Temporal>
+			<MergeStrategyClass>SummationGdalRasterFileMerge</MergeStrategyClass>
+			<InterpolateStrategyClass/>
+		</Temporal>
+	</Summary>
+	<QualityControl/>
+	<ExtraInfo>
+		<Tiles>false</Tiles>
+	</ExtraInfo>
+</PluginMetadata>
+

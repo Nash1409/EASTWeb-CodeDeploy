@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- http://www.mchange.com/projects/c3p0/#configuration_properties --><c3p0-config>
+	<default-config>
+		<property name="preferredTestQuery">SELECT 1;</property>
+		<property name="minPoolSize">2</property>
+		<property name="initialPoolSize">4</property>
+		<property name="acquireIncrement">1</property>
+		<property name="maxIdleTime">600</property>
+		<property name="idleConnectionTestPeriod">60</property>
+		<property name="testConnectionOnCheckout">true</property>
+		<property name="forceSynchronousCheckins">true</property>
+		<property name="checkoutTimeout">120000</property>
+		<property name="numHelperThreads">3</property>
+	</default-config>
+</c3p0-config>

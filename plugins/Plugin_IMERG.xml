@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<PluginMetadata>
+	<Title>IMERG</Title>
+	<DaysPerInputData>1</DaysPerInputData>
+	<NoDataValue>9999</NoDataValue>
+	<Resolution>10000</Resolution>
+	<CompositesContinueIntoNextYear>TRUE</CompositesContinueIntoNextYear>
+	<ExtraIndices>FALSE</ExtraIndices>
+	<ExtraDownloadFiles/>
+	<Download>
+		<DownloadFactoryClassName>IMERGFactory</DownloadFactoryClassName>
+		<Mode>ftp</Mode>
+		<FTP>
+			<HostName>arthurhou.pps.eosdis.nasa.gov</HostName>
+			<RootDir>/gpmdata</RootDir>
+			<UserName>eastweb.system@gmail.com</UserName>
+			<PassWord>eastweb.system@gmail.com</PassWord>
+		</FTP>
+		<TimeZone>CST6CDT</TimeZone>
+		<FilesPerDay>1</FilesPerDay>
+		<DatePattern>\d{4}</DatePattern>
+		<FileNamePattern>3B-DAY-GIS\.MS\.MRG\.3IMERG\.(\d{8})-S000000-E235959\.(\d{4}|\d{5})\.V(\d{2})[A-Z]\.tif</FileNamePattern>
+		<OriginDate>
+			<DayOfMonth>01</DayOfMonth>
+			<Month>June</Month>
+			<Year>2014</Year>
+		</OriginDate>
+	</Download>	
+	<Processor>
+		<ProcessStep>IMERGConvert</ProcessStep>
+		<ProcessStep>IMERGReproject</ProcessStep>
+		<ProcessStep>IMERGClip</ProcessStep>
+		<ProcessStep>IMERGMask</ProcessStep>
+		<NumberOfOutput>1</NumberOfOutput>
+	</Processor>
+	<Indices>
+		<ClassName>IMERGIndex</ClassName>
+	</Indices>
+	<Summary>
+		<Temporal>
+			<MergeStrategyClass>SummationGdalRasterFileMerge</MergeStrategyClass>
+			<InterpolateStrategyClass/>
+		</Temporal>
+	</Summary>
+	<QualityControl/>
+	<ExtraInfo>
+		<Tiles>false</Tiles>
+	</ExtraInfo>
+</PluginMetadata>
+
