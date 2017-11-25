@@ -23,6 +23,6 @@ Write-Warning "Original arguments (if any): $args"
 
 # Your 64-bit script code follows here...
 # ...
-echo "Process Starting" >> C:\AppFolder\startProcess.log
+echo "Process Starting" >> C:\startProcess.log
 Invoke-Item C:\AppFolder\eastweb.exe
-echo "Process Started" >> C:\AppFolder\startProcess.log
+echo "Process Started" >> C:\startProcess.log
